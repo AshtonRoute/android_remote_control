@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  server:
+    image: docker.home.lan/android/remote_control/server
+    build:
+      context: server
+      target: builder
+    command: gradle --continuous assembleDebug
+    environment:
+      ADB_VENDOR_KEYS: /root/.android
+    volumes:
+    - ./keys/adbkey:/root/.android/adbkey:ro
+    - ./server/src:/app/src/main:ro
+    - ./server/build.gradle:/app/build.gradle:ro
+    - ./server/root.gradle:/build.gradle:ro
+    - ./server/dependencies.gradle:/dependencies.gradle:ro
+    - ./output:/app/build/outputs/apk:rw
+
+  client:
+    image: docker.home.lan/android/remote_control/client
+    build:
+      context: client
+    #command: npm start
+    restart: unless-stopped
+    environment:
+      ADB_VENDOR_KEYS: /root/.android
+      SERVER_PATH: /server/debug/app-debug.apk
+      DEVICE_SERIAL: shield:5555
+      WATCH_SERVER_PATH: 'true'
+      NODE_ENV: production
+      #NODE_ENV: development
+    volumes:
+    - ./keys/adbkey:/root/.android/adbkey:ro
+    - ./output:/server:ro
+    - ./client/src:/app/src:rw
+    - ./client/package.json:/app/package.json:rw
+    - ./client/yarn.lock:/app/yarn.lock:rw
+    - ./client/babel.config.js:/app/babel.config.js:ro

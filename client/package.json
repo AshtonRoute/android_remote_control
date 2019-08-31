@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "type": "",
+  "scripts": {
+    "build": "babel --source-map inline /app/src -d /app/dist",
+    "development": "cross-env NODE_ENV=development nodemon --exec \"babel-node\" src",
+    "production": "cross-env NODE_ENV=production node src",
+    "start": "npm run development"
+  },
+  "dependencies": {
+    "@babel/core": "7.5.5",
+    "@hapi/joi": "15.1.0",
+    "adbkit": "2.11.1",
+    "bluebird": "3.5.5",
+    "lodash": "4.17.15",
+    "source-map-support": "0.5.13",
+    "winston": "3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/node": "7.5.5",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-decorators": "7.4.4",
+    "@babel/plugin-proposal-do-expressions": "7.5.0",
+    "@babel/plugin-proposal-export-default-from": "7.5.2",
+    "@babel/plugin-proposal-export-namespace-from": "7.5.2",
+    "@babel/plugin-proposal-function-bind": "7.2.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "7.2.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
+    "@babel/plugin-proposal-optional-catch-binding": "7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "7.2.0",
+    "@babel/plugin-proposal-pipeline-operator": "7.5.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/preset-env": "7.5.5",
+    "chokidar": "3.0.2",
+    "cross-env": "5.2.0",
+    "nodemon": "1.19.1"
+  }
+}
