@@ -33,7 +33,7 @@ class ClipboardManager(manager: IInterface) {
 
         val clipData = clipVal as ClipData
 
-        if (clipData == null || clipData.getItemCount() == 0) {
+        if (clipData.getItemCount() == 0) {
           return ""
         }
 

@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM node:12.8.1-alpine
+FROM node:12.9.1-alpine
 
 RUN \
   --mount=type=cache,target=/var/cache/apk \
@@ -23,5 +23,7 @@ COPY babel.config.js /app/
 COPY src /app/src
 
 RUN npm run build
+
+COPY --from=docker.home.lan/android/remote_control/server /app/dist/remote_control_server.jar /server/debug/app-debug.apk
 
 CMD ["node", "/app/dist"]
