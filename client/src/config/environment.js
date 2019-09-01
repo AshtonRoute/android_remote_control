@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 
 const schema = Joi.object({
-  SERVER_PATH: Joi.string().required(),
+  SERVER_PATH: Joi.string().default('/server/app.apk'),
   SOCKET_NAME: Joi.string().default('remote_control'),
 
   WATCH_SERVER_PATH: Joi.boolean().default(false),
